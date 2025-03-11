@@ -5,10 +5,7 @@
 int main() {
 
     FILE* fptr = fopen("file.txt", "r");
-
-    // int a -> 45;
-    // int* b -> &a;
-
+    
     char ch = ' ';
 
     int positionI = 1; // row position
@@ -20,12 +17,13 @@ int main() {
         return 0;
     }
 
-    while ((ch = fgetc(fptr)) != EOF) {
+    while ((ch = fgetc(fp)) != EOF) {
+        positionJ++;
         if (ch == '\n') {
             positionI++;
-        } else {
-            positionJ++;
-            printf("Position: %d, %d, Char: %c\n", positionI, positionJ, ch);
+            col = 0;
+        } else if (ch == '{' || ch == '}') {
+            printf("'%c' at line %d, col %d\n", ch, positionI, positionJ);
         }
     }
 
